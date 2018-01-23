@@ -2,13 +2,13 @@ var express      = require('express'),
     passport     = require('passport'),
     bodyParser   = require('body-parser'),
     LdapStrategy = require('passport-ldapauth');
-
+// https://console.jumpcloud.com/#/directories/ldap_server/5a66fbd9232e1102f7e438e7/details
 var OPTS = {
   server: {
-    url: 'ldap://0.0.0.0:389',
-    bindDN: 'cn=admin,dc=lantronix,dc=com',
+    url: 'ldap://ldap.jumpcloud.com:389',
+    bindDN: 'uid=sbaru,ou=Users,o=5a66f92efd2d1dfd7867d1d7,dc=jumpcloud,dc=com',
     bindCredentials: 'sudhir',
-    searchBase: 'cn=mach10,dc=lantronix,dc=com',
+    searchBase: 'o=5a66f92efd2d1dfd7867d1d7,dc=jumpcloud,dc=com',
     searchFilter: '(uid={{username}})'
   }
 };
