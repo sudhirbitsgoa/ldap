@@ -1,15 +1,19 @@
 var express      = require('express'),
     passport     = require('passport'),
     bodyParser   = require('body-parser'),
-    LdapStrategy = require('passport-ldapauth');
+    LdapStrategy = require('passport-ldapauth'),
+    fs           = require('fs');
 // https://console.jumpcloud.com/#/directories/ldap_server/5a66fbd9232e1102f7e438e7/details
 var OPTS = {
   server: {
-    url: 'ldap://ldap.jumpcloud.com:389',
-    bindDN: 'uid=sbaru,ou=Users,o=5a66f92efd2d1dfd7867d1d7,dc=jumpcloud,dc=com',
+    url: 'ldaps://ldap.lantronix.com',
+    bindDN: 'cn=admin,dc=lantronix,dc=com',
     bindCredentials: 'sudhir',
-    searchBase: 'o=5a66f92efd2d1dfd7867d1d7,dc=jumpcloud,dc=com',
-    searchFilter: '(uid={{username}})'
+    searchBase: 'cn=mach10,dc=lantronix,dc=com',
+    searchFilter: '(uid={{username}})',
+    tlsOptions: {
+      ca: [fs.readFileSync('/etc/ldap/ca_certs.pem')]
+    }
   }
 };
 
